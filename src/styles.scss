@@ -1,1 +1,239 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$spectre-recreated-primary: mat.define-palette(mat.$teal-palette);
+$spectre-recreated-accent: mat.define-palette(
+  mat.$teal-palette,
+  A200,
+  A100,
+  A400
+);
+
+// The warn palette is optional (defaults to red).
+$spectre-recreated-warn: mat.define-palette(mat.$pink-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$spectre-recreated-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $spectre-recreated-primary,
+      accent: $spectre-recreated-accent,
+      warn: $spectre-recreated-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($spectre-recreated-theme);
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Raleway:wght@300;400;700&display=swap");
 /* You can add global styles to this file, and also import other style files */
+@import "./scss-helpers/variables";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  background: linear-gradient(
+    120deg,
+    $spectre-deep-blue,
+    $spectre-light-green 250%
+  );
+}
+.form {
+  padding: 10% 7%;
+  z-index: 10;
+  background: white;
+  position: relative;
+  .error {
+    color: red;
+  }
+  .hint {
+    color: $spectre-light-green;
+  }
+  .credErr {
+    margin-top: -15px;
+    margin-bottom: 10px;
+    margin: -12px 0px 10px 10px;
+    font-size: 0.8em;
+    animation: credErrIntro 0.2s;
+    color: $spectre-warn-pink;
+    @keyframes credErrIntro {
+      0% {
+        margin-top: -20px;
+        opacity: 0;
+      }
+      100% {
+        margin-top: -15px;
+        opacity: 1;
+      }
+    }
+  }
+  h1 {
+    text-align: center;
+  }
+  svg {
+    display: inline-block;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    transform: rotate(0deg) scale(1);
+    &:hover {
+      transform: rotate(90deg) scale(1.05);
+    }
+  }
+  .pw,
+  mat-form-field,
+  .btn {
+    width: 100%;
+  }
+  mat-form-field {
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    background: $spectre-light-green;
+    color: white;
+    border-radius: 1px 80px;
+    height: 45px;
+    transition: 0.2s;
+    &:hover {
+      border-radius: 1px;
+      opacity: 0.9;
+    }
+  }
+}
+.registerContainer .mat-dialog-container,
+.loginContainer .mat-dialog-container,
+.createTeamContainer .mat-dialog-container,
+.deleteTeamContainer .mat-dialog-container,
+.alert .mat-dialog-container,
+.createDashboardPanel .mat-dialog-container {
+  border-radius: 4px 30px;
+  width: 20%;
+  height: 55%;
+  position: absolute;
+  top: 25%;
+  left: 40%;
+}
+.loginContainer .mat-dialog-container,
+.createTeamContainer .mat-dialog-container {
+  height: 43%;
+  top: 29.5%;
+  padding: 2% 2.5% 1%;
+}
+.createTeamContainer .mat-dialog-container {
+  height: 50%;
+}
+
+.createDashboardPanel .mat-dialog-container {
+  height: 48%;
+}
+
+.deleteTeamContainer .mat-dialog-container,
+.alert .mat-dialog-container {
+  height: 25%;
+  top: 40%;
+  width: 22%;
+  padding: 1.7% 1.25%;
+}
+.loginSuccesContainer .mat-dialog-container,
+.registerSuccessContainer .mat-dialog-container,
+.createTeamSuccess .mat-dialog-container {
+  text-align: center;
+  width: 400px;
+  height: 450px;
+  border-radius: 3px 30px;
+  position: relative;
+  svg {
+    position: absolute;
+    left: 0%;
+    top: 5%;
+    transform: scale(0.3);
+    stroke: $spectre-light-green;
+    stroke-width: 1;
+    fill: white;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 0;
+    animation: check 0.6s ease-in;
+    .st0 {
+      fill: white;
+    }
+    .st1 {
+      fill: white;
+      stroke: $spectre-light-green;
+      stroke-width: 1;
+      stroke-dasharray: 240;
+      stroke-dashoffset: 0;
+      animation: check 2s ease-in;
+    }
+    @keyframes check {
+      0% {
+        stroke-dashoffset: 240;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  }
+  h1 {
+    padding: 2% 2.5%;
+    font-size: 1.4em;
+    margin-top: 13%;
+  }
+  button {
+    width: 60%;
+    margin: 55% auto 0;
+    color: white;
+    background: $spectre-light-green;
+    height: 50px;
+    border-radius: 1px 20px;
+    transition: 0.2s;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      border-radius: 1px;
+    }
+  }
+}
+.registerSuccessContainer .mat-dialog-container {
+  width: 500px;
+  height: 600px;
+  .center {
+    margin-top: 30px;
+  }
+  svg {
+    top: 7%;
+  }
+  button {
+    width: 50%;
+  }
+}
+.createTeamSuccess .mat-dialog-container {
+  margin-top: 85px;
+}
+
+.mat-select-panel,
+.ng-trigger-transformPanel {
+  position: absolute;
+  margin-top: 42px;
+  margin-left: 8px;
+}

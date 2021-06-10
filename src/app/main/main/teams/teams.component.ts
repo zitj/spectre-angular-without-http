@@ -12,31 +12,14 @@ import { AlertComponent } from 'src/app/shared-components/alert/alert.component'
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss'],
 })
-export class TeamsComponent implements OnInit, OnDestroy {
+export class TeamsComponent implements OnInit {
   constructor(public dialog: MatDialog, public teamsService: TeamsService) {}
 
   userLoggedIn = JSON.parse(localStorage.getItem('UserLoggedIn') || '{}');
   teams: Team[] = this.teamsService.teams;
   myTeam: Team[] = [];
-  private getSub: Subscription = new Subscription();
 
   ngOnInit(): void {
-    // this.getSub = this.teamsService.getTeams().subscribe((data) => {
-    //   this.teams = data;
-    //   for (let team of this.teams) {
-    //     if (team.creatorId === this.userLoggedIn.id) {
-    //       team.isAdmin = true;
-    //       this.myTeam = this.teams.filter(
-    //         (t) => t.creatorId == this.userLoggedIn.id
-    //       );
-    //       this.teams = this.teams.filter(
-    //         (t) => t.creatorId !== this.userLoggedIn.id
-    //       );
-    //       this.teams.push(this.myTeam[0]);
-    //       this.teams.reverse();
-    //     }
-    //   }
-    // });
     for (let team of this.teams) {
       if (team.creatorEmail === this.userLoggedIn.email) {
         team.isAdmin = true;
@@ -44,10 +27,6 @@ export class TeamsComponent implements OnInit, OnDestroy {
         team.isAdmin = false;
       }
     }
-  }
-
-  ngOnDestroy(): void {
-    this.getSub.unsubscribe();
   }
 
   openEditTeamPanel(): void {

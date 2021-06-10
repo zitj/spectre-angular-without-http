@@ -17,7 +17,7 @@ import { SuccessComponent } from '../../../shared-components/success/success.com
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
   hidePassword: boolean = false;
 
   constructor(
@@ -26,10 +26,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private usersService: UsersService
   ) {}
 
-  private getSub: Subscription = new Subscription();
-  private postSub: Subscription = new Subscription();
   formGroup: FormGroup = new FormGroup({});
-  // users: User[] = [];
   emailErrMsg: string = 'Email is required';
 
   ngOnInit(): void {
@@ -46,29 +43,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
       ],
       password: ['', [Validators.required]],
     });
-    // this.getSub = this.usersService.getUsers().subscribe((data) => {
-    //   this.users = data;
-    // });
+
     console.log(this.usersService.users);
     this.usersService.signUp = true;
   }
 
-  ngOnDestroy(): void {
-    this.getSub.unsubscribe();
-    this.postSub.unsubscribe();
-  }
-
   onSubmit(): void {
-    // this.postSub = this.usersService
-    //   .postUser(this.formGroup.value)
-    //   .subscribe((data) => {
-    //   });
     this.dialog.open(SuccessComponent, {
       panelClass: 'registerSuccessContainer',
     });
     this.usersService.users.push(this.formGroup.value);
-
-    console.log('submit works');
   }
 
   uniqueEmail(users: User[]): ValidatorFn {

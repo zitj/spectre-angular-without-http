@@ -11,7 +11,7 @@ import { SuccessComponent } from '../../../shared-components/success/success.com
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
   constructor(
     public dialog: MatDialog,
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private usersService: UsersService
   ) {}
 
-  private getSub: Subscription = new Subscription();
   formGroup: FormGroup = new FormGroup({});
   credentialsInvalid: boolean = false;
 
@@ -31,13 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     console.log(this.usersService.users);
   }
 
-  ngOnDestroy(): void {
-    this.getSub.unsubscribe();
-  }
-
   onSubmit(): void {
-    // this.getSub = this.usersService.getUsers().subscribe((data) => {
-    //   let users = data;
     for (let user of this.usersService.users) {
       if (
         user.email === this.formGroup.value.email &&
@@ -51,6 +44,5 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.credentialsInvalid = true;
       }
     }
-    console.log('submit works!');
   }
 }

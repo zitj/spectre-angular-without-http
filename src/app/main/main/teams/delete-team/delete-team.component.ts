@@ -23,32 +23,18 @@ export class DeleteTeamComponent implements OnInit {
   teamId: number = 90;
   teamName: string = '';
 
-  private getSub: Subscription = new Subscription();
-  private delSub: Subscription = new Subscription();
   userLoggedIn = JSON.parse(localStorage.getItem('UserLoggedIn') || '{}');
 
   ngOnInit(): void {
-    // this.getSub = this.teamsService.getTeams().subscribe((data) => {
-    //   this.teams = data;
     for (let team of this.teams) {
       if (team.creatorEmail === this.userLoggedIn.email) {
         this.teamId = team.id;
         this.teamName = team.name;
       }
     }
-    // });
   }
-  // ngOnDestroy(): void {
-  //   this.getSub.unsubscribe();
-  //   this.delSub.unsubscribe();
-  // }
 
   deleteTeam(): void {
-    // this.delSub = this.teamsService
-    //   .deleteTeam(this.teamId)
-    //   .subscribe((data) => {
-    //     this.refresh();
-    //   });
     for (var i = 0; i < this.teamsService.teams.length; i++) {
       if (this.teamsService.teams[i].creatorEmail === this.userLoggedIn.email) {
         this.teamsService.teams.splice(i, 1);
@@ -56,16 +42,4 @@ export class DeleteTeamComponent implements OnInit {
     }
     this.dialog.closeAll();
   }
-
-  //   refresh(): void {
-  //     this.router
-  //       .navigateByUrl('main', {
-  //         skipLocationChange: true,
-  //       })
-  //       .then(() => {
-  //         this.router.navigate([decodeURI(this.location.path())]);
-  //         this.dialog.closeAll();
-  //       });
-  //   }
-  // }
 }

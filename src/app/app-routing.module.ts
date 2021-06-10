@@ -16,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/auth',
+    loadChildren: () => import('./auth/auth.module').then((a) => a.AuthModule),
+    canLoad: [AuthGuard],
     pathMatch: 'full',
   },
 ];

@@ -6,7 +6,7 @@ import { MainGuard } from '../main.guard';
 
 const routes = [
   {
-    path: '/main',
+    path: '',
     component: MainComponent,
     canLoad: [MainGuard],
     children: [
@@ -25,7 +25,7 @@ const routes = [
 
   {
     path: '**',
-    redirectTo: '/main/teams',
+    redirectTo: '/teams',
     pathMatch: 'full',
   },
 ];

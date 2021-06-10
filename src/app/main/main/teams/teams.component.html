@@ -1,0 +1,46 @@
+<h1 class="watermark">Teams</h1>
+<div class="wrapper">
+  <button
+    mat-flat-button
+    class="create-new-team-btn create-new-btn"
+    (click)="openCreateTeamPanel()"
+  >
+    <mat-icon>group_add</mat-icon> <br />
+    <span
+      >Create new<br />
+      team</span
+    >
+  </button>
+  <div class="card-container">
+    <mat-card class="card" *ngFor="let team of teams">
+      <h1>{{ team.name }}</h1>
+      <p>
+        Industry: <span>{{ team.industry }}</span>
+      </p>
+      <p>Number of members: {{ team.members.length }}</p>
+      <div class="buttons">
+        <div mat-dialog-actions>
+          <button
+            color="primary"
+            class="cardBtn"
+            mat-flat-button
+            [disabled]="!this.team.isAdmin"
+            (click)="openEditTeamPanel()"
+          >
+            Edit
+          </button>
+          <button
+            color="warn"
+            class="cardBtn"
+            mat-flat-button
+            [disabled]="!this.team.isAdmin"
+            (click)="openDeleteTeamPanel()"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<router-outlet></router-outlet>

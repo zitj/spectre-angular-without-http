@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SuccessComponent } from './shared-components/success/success.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AlertComponent } from './shared-components/alert/alert.component';
 
 @NgModule({
-  declarations: [AppComponent, SuccessComponent],
+  declarations: [AppComponent, SuccessComponent, AlertComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

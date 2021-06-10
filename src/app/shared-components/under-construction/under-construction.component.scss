@@ -1,0 +1,51 @@
+.center {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: intro 1s ease-in-out;
+}
+h1 {
+  font-size: 3.5em;
+  font-weight: 300;
+  color: white;
+  font-family: "Raleway", sans-serif;
+}
+img {
+  animation: construction 4s ease-in-out infinite;
+  position: absolute;
+  left: 38%;
+  margin-top: 4em;
+  top: 120%;
+  height: 130px;
+  width: 130px;
+}
+@keyframes intro {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes construction {
+  0% {
+    left: 38%;
+    transform: rotateY(0deg);
+  }
+  28% {
+    left: 67%;
+  }
+
+  50% {
+    transform: rotateY(-180deg);
+  }
+  75% {
+    left: 27%;
+  }
+  100% {
+    left: 38%;
+    // transform: rotateY(10deg);
+  }
+}

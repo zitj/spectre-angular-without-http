@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { TeamsComponent } from './teams/teams.component';
 import { MainComponent } from '../main/main.component';
 import { MainGuard } from '../main.guard';
+import { DashboardsComponent } from './dashboards/dashboards.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 const routes = [
   {
@@ -16,9 +18,11 @@ const routes = [
       },
       {
         path: 'dashboards',
+        component: DashboardsComponent,
       },
       {
         path: 'statistics',
+        component: StatisticsComponent,
       },
     ],
   },

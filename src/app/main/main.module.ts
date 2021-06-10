@@ -20,6 +20,9 @@ import { MainRoutingModudle } from './main/main-routing.module';
 import { TeamsComponent } from './main/teams/teams.component';
 import { CreateTeamComponent } from './main/teams/create-team/create-team.component';
 import { DeleteTeamComponent } from './main/teams/delete-team/delete-team.component';
+import { DashboardsComponent } from './main/dashboards/dashboards.component';
+import { StatisticsComponent } from './main/statistics/statistics.component';
+import { UnderConstructionComponent } from 'src/app/shared-components/under-construction/under-construction.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { DeleteTeamComponent } from './main/teams/delete-team/delete-team.compon
     TeamsComponent,
     CreateTeamComponent,
     DeleteTeamComponent,
+    DashboardsComponent,
+    StatisticsComponent,
+    UnderConstructionComponent,
   ],
   imports: [
     CommonModule,
